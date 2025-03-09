@@ -70,6 +70,50 @@ void drawPyramid3()
 
 void drawPyramid4()
 {
+    glPushMatrix();
+    glRotatef(angle, 0.0, 1.0, 0.0); // Rotasi agar limas berputar
+
+    glBegin(GL_TRIANGLES);
+
+    // Warna selang-seling (biru muda dan biru tua)
+    float colors[2][3] = {
+        {0.0, 0.3, 1.0}, // Biru muda
+        {0.0, 0.0, 0.6}  // Biru tua
+    };
+
+    // Puncak limas
+    float peak[3] = {0.0, 1.5, 0.0};
+
+    // Titik alas
+    float base[4][3] = {
+        {-1.0, 0.0, 1.0},
+        {1.0, 0.0, 1.0},
+        {1.0, 0.0, -1.0},
+        {-1.0, 0.0, -1.0}};
+
+    // Membuat sisi segitiga dari limas
+    for (int i = 0; i < 4; i++)
+    {
+        int next = (i + 1) % 4;
+
+        glColor3f(colors[i % 2][0], colors[i % 2][1], colors[i % 2][2]);
+        glVertex3fv(peak);
+        glVertex3fv(base[i]);
+        glVertex3fv(base[next]);
+    }
+
+    glEnd();
+
+    // Menggambar alas limas (persegi)
+    glBegin(GL_QUADS);
+    glColor3f(0.0, 0.2, 0.8); // Biru gelap
+    glVertex3fv(base[0]);
+    glVertex3fv(base[1]);
+    glVertex3fv(base[2]);
+    glVertex3fv(base[3]);
+    glEnd();
+
+    glPopMatrix();
 }
 
 void drawPyramid5()
@@ -78,6 +122,54 @@ void drawPyramid5()
 
 void drawPyramid6()
 {
+    glPushMatrix();
+    glRotatef(angle, 0.0, 1.0, 0.0); // Rotasi agar limas berputar
+
+    glBegin(GL_TRIANGLES);
+
+    float radius = 1.0;
+    float height = 1.5;
+
+    // Warna selang-seling
+    float colors[2][3] = {
+        {0.8, 0.2, 0.9}, // Warna pertama
+        {0.7, 0.2, 0.8}  // Warna kedua
+    };
+
+    // Membuat sisi segitiga dari limas
+    for (int i = 0; i < 6; i++)
+    {
+        float theta1 = i * M_PI / 3.0;
+        float theta2 = (i + 1) * M_PI / 3.0;
+
+        float x1 = radius * cos(theta1);
+        float z1 = radius * sin(theta1);
+        float x2 = radius * cos(theta2);
+        float z2 = radius * sin(theta2);
+
+        glColor3f(colors[i % 2][0], colors[i % 2][1], colors[i % 2][2]); // Selang-seling warna
+        glVertex3f(0.0, height, 0.0); // Titik puncak
+        glVertex3f(x1, 0.0, z1);      // Titik pertama alas
+        glVertex3f(x2, 0.0, z2);      // Titik kedua alas
+    }
+
+    glEnd();
+
+    // Alas hexagonal
+    glBegin(GL_POLYGON);
+    glColor3f(0.5, 0.0, 0.8);
+
+    for (int i = 0; i < 6; i++)
+    {
+        float theta = i * M_PI / 3.0;
+        float x = radius * cos(theta);
+        float z = radius * sin(theta);
+        glVertex3f(x, 0.0, z);
+    }
+
+    glEnd();
+
+    glPopMatrix();
 }
 
 float rotationAngle = 0.0; // Variable to control rotation
