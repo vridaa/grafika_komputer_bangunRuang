@@ -118,6 +118,56 @@ void drawPyramid4()
 
 void drawPyramid5()
 {
+    glPushMatrix();
+    glRotatef(angle, 0.0, 1.0, 0.0); // Rotasi agar limas berputar
+
+    glBegin(GL_TRIANGLES);
+
+    float radius = 1.0;
+    float height = 1.5;
+
+    // Warna unik untuk setiap sisi
+    float colors[5][3] = {
+        {1.0, 0.0, 0.0},  // Merah
+        {0.0, 1.0, 0.0},  // Hijau
+        {0.0, 0.0, 1.0},  // Biru
+        {1.0, 1.0, 0.0},  // Kuning
+        {1.0, 0.0, 1.0}   // Ungu
+    };
+
+    // Membuat sisi segitiga dari limas
+    for (int i = 0; i < 5; i++)
+    {
+        float theta1 = i * (2 * M_PI / 5.0);
+        float theta2 = (i + 1) * (2 * M_PI / 5.0);
+
+        float x1 = radius * cos(theta1);
+        float z1 = radius * sin(theta1);
+        float x2 = radius * cos(theta2);
+        float z2 = radius * sin(theta2);
+
+        glColor3f(colors[i][0], colors[i][1], colors[i][2]); // Warna berbeda untuk setiap sisi
+        glVertex3f(0.0, height, 0.0); // Titik puncak
+        glVertex3f(x1, 0.0, z1);      // Titik pertama alas
+        glVertex3f(x2, 0.0, z2);      // Titik kedua alas
+    }
+
+    glEnd();
+
+    // Alas pentagonal dengan warna berbeda
+    glBegin(GL_POLYGON);
+    glColor3f(0.5, 0.5, 0.5); // Abu-abu untuk alas
+
+    for (int i = 0; i < 5; i++)
+    {
+        float theta = i * (2 * M_PI / 5.0);
+        float x = radius * cos(theta);
+        float z = radius * sin(theta);
+        glVertex3f(x, 0.0, z);
+    }
+    glEnd();
+
+    glPopMatrix();
 }
 
 void drawPyramid6()
