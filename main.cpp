@@ -29,11 +29,49 @@ void drawText(const char *text, int length, int x, int y)
 void drawCube()
 {
     glBegin(GL_QUADS);
-    glColor3f(1.0, 0.0, 0.0);
-    glVertex3f(-0.5, -0.5, 0.5);
-    glVertex3f(0.5, -0.5, 0.5);
-    glVertex3f(0.5, 0.5, 0.5);
-    glVertex3f(-0.5, 0.5, 0.5);
+
+    // Sisi depan
+    glColor3f(1.0, 0.0, 0.0); // Merah
+    glVertex3f(0.8, 0.8, 0.8);  
+    glVertex3f(-0.8, 0.8, 0.8); 
+    glVertex3f(-0.8, -0.8, 0.8); 
+    glVertex3f(0.8, -0.8, 0.8);  
+
+    // Sisi belakang
+    glColor3f(0.0, 1.0, 0.0); // Hijau
+    glVertex3f(0.8, 0.8, -0.8); 
+    glVertex3f(0.8, -0.8, -0.8); 
+    glVertex3f(-0.8, -0.8, -0.8); 
+    glVertex3f(-0.8, 0.8, -0.8); 
+
+    // Sisi kiri
+    glColor3f(0.0, 0.0, 1.0); // Biru
+    glVertex3f(-0.8, 0.8, 0.8); 
+    glVertex3f(-0.8, 0.8, -0.8); 
+    glVertex3f(-0.8, -0.8, -0.8); 
+    glVertex3f(-0.8, -0.8, 0.8); 
+
+    // Sisi kanan
+    glColor3f(1.0, 1.0, 0.0); // Kuning
+    glVertex3f(0.8, 0.8, 0.8);  
+    glVertex3f(0.8, -0.8, 0.8);  
+    glVertex3f(0.8, -0.8, -0.8); 
+    glVertex3f(0.8, 0.8, -0.8);  
+
+    // Sisi atas
+    glColor3f(1.0, 0.0, 1.0); // Merah muda
+    glVertex3f(0.8, 0.8, 0.8);  
+    glVertex3f(0.8, 0.8, -0.8); 
+    glVertex3f(-0.8, 0.8, -0.8); 
+    glVertex3f(-0.8, 0.8, 0.8);  
+
+    // Sisi bawah
+    glColor3f(0.0, 1.0, 1.0); // Cyan
+    glVertex3f(0.8, -0.8, 0.8);  
+    glVertex3f(-0.8, -0.8, 0.8); 
+    glVertex3f(-0.8, -0.8, -0.8); 
+    glVertex3f(0.8, -0.8, -0.8);  
+
     glEnd();
 }
 
